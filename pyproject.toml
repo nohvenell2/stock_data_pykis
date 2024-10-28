@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "PykisData"
+version = "0.1.0"
+description = ""
+authors = ["nohvenell2 <nohvenell2@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pandas = "^2.2.3"
+python-kis = "^2.0.3"
+python-dotenv = "^1.0.1"
+yfinance = "^0.2.46"
+openpyxl = "^3.1.5"
+sqlalchemy = "^2.0.36"
+pymysql = "^1.1.1"
+cloudscraper = "^1.2.71"
+tqdm = "^4.66.5"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
