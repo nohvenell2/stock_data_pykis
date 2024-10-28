@@ -83,7 +83,7 @@ def save_snp500_stock_index(base_dir : str = base_dir) -> DataFrame:
     del (df2)
     os.remove(tmp_fil1)
     os.remove(tmp_fil2)
-    print("Done")
+    print("Download Done")
     return DF
 if __name__ == '__main__':
     save_snp500_stock_index()

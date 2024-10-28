@@ -16,13 +16,10 @@ def get_last_run_date():
 def set_last_run_date(date):
     with open(LAST_RUN_FILE, 'w') as file:
         file.write(date.strftime('%Y-%m-%d'))
-once_per_day=False
 
 today = datetime.now().date()
 last_run_date = get_last_run_date()
-if not last_run_date == today:
-    set_last_run_date(today)
-else: once_per_day = True
+once_per_day = bool(last_run_date == today)
 
 # 한국투자증권 API 만의 특이한 해외 주식 심볼 적용
 error_symbol = {'BFb':'BF/B','BRKb':'BRK/B'}
@@ -64,5 +61,6 @@ def get_snp500_index(save : bool = False):
 
 SNP500_INDEX = get_snp500_index()
 SNP500_INDEX_SYMBOLS = list(SNP500_INDEX.keys())
+set_last_run_date(today) #실행 성공 날짜 저장
 if __name__ == '__main__':
     print(SNP500_INDEX)
