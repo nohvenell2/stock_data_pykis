@@ -3,9 +3,10 @@ import urllib.request
 import ssl, zipfile, os
 from pandas import DataFrame
 
-root_dir = os.getcwd()
-save_dir = [root_dir,'app','util','snp','datafiles']
+curr_dir = os.path.dirname(os.path.abspath(__file__))
+save_dir = [curr_dir,'datafiles']
 base_dir = os.path.join(*save_dir)
+
 def save_snp500_stock_index(base_dir : str = base_dir) -> DataFrame:
     """
     해외 주식 기초정보를 파일로 다운 받고 DF 로 반환 및 xlsx 파일로 저장
@@ -21,16 +22,16 @@ def save_snp500_stock_index(base_dir : str = base_dir) -> DataFrame:
     print('Downloading Foreign')
     ssl._create_default_https_context = ssl._create_unverified_context
     urllib.request.urlretrieve("https://new.real.download.dws.co.kr/common/master/frgn_code.mst.zip",
-                                base_dir + "\\frgn_code.mst.zip")
+                                os.path.join(base_dir,"frgn_code.mst.zip"))
     os.chdir(base_dir)
     frgn_code_zip = zipfile.ZipFile('frgn_code.mst.zip')
     frgn_code_zip.extractall()
     frgn_code_zip.close()
 
     # df1 : '구분코드','심볼','영문명','한글명'
-    file_name = base_dir + "\\frgn_code.mst"
-    tmp_fil1 = base_dir + "\\frgn_code_part1.tmp"
-    tmp_fil2 = base_dir + "\\frgn_code_part2.tmp"
+    file_name = os.path.join(base_dir,"frgn_code.mst")
+    tmp_fil1 = os.path.join(base_dir,"frgn_code_part1.tmp")
+    tmp_fil2 = os.path.join(base_dir,"frgn_code_part2.tmp")
 
     wf1 = open(tmp_fil1, mode="w")
     wf2 = open(tmp_fil2, mode="w")
@@ -60,7 +61,7 @@ def save_snp500_stock_index(base_dir : str = base_dir) -> DataFrame:
     wf2.close()
     
     part1_columns = ['구분코드','심볼','영문명','한글명']
-    df1 = pd.read_csv(tmp_fil1, header=None, names=part1_columns, encoding='cp949')
+    df1 = pd.read_csv(tmp_fil1, header=None, names=part1_columns)
 
     # df2 : '종목업종코드','다우30 편입종목여부','나스닥100 편입종목여부', 'S&P 500 편입종목여부','거래소코드','국가구분코드'
     

@@ -6,8 +6,8 @@ import zipfile
 import os
 import pandas as pd
 
-root_dir = os.getcwd()
-save_dir = [root_dir,'app','util','kospi','datafiles']
+curr_dir = os.path.dirname(os.path.abspath(__file__))
+save_dir = [curr_dir,'datafiles']
 base_dir = os.path.join(*save_dir)
 
 def save_kospi_stock_index(base_dir : str = base_dir):
@@ -23,16 +23,16 @@ def save_kospi_stock_index(base_dir : str = base_dir):
     print('Downloading Kospi')
     ssl._create_default_https_context = ssl._create_unverified_context
     urllib.request.urlretrieve("https://new.real.download.dws.co.kr/common/master/kospi_code.mst.zip",
-                                base_dir + "\\kospi_code.zip")
+                                os.path.join(base_dir,"kospi_code.zip"))
 
     os.chdir(base_dir)
     kospi_zip = zipfile.ZipFile('kospi_code.zip')
     kospi_zip.extractall()
     kospi_zip.close()
 
-    file_name = base_dir + "\\kospi_code.mst"
-    tmp_fil1 = base_dir + "\\kospi_code_part1.tmp"
-    tmp_fil2 = base_dir + "\\kospi_code_part2.tmp"
+    file_name = os.path.join(base_dir,"kospi_code.mst")
+    tmp_fil1 = os.path.join(base_dir,"kospi_code_part1.tmp")
+    tmp_fil2 = os.path.join(base_dir,"kospi_code_part2.tmp")
 
     wf1 = open(tmp_fil1, mode="w")
     wf2 = open(tmp_fil2, mode="w")
@@ -51,7 +51,7 @@ def save_kospi_stock_index(base_dir : str = base_dir):
     wf2.close()
 
     part1_columns = ['단축코드', '표준코드', '한글명']
-    df1 = pd.read_csv(tmp_fil1, header=None, names=part1_columns, encoding='cp949')
+    df1 = pd.read_csv(tmp_fil1, header=None, names=part1_columns)
 
     field_specs = [2, 1, 4, 4, 4,
                     1, 1, 1, 1, 1,

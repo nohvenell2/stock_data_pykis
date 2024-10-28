@@ -4,7 +4,6 @@ from .snp.get_snp500_index import SNP500_INDEX
 from typing import TypedDict, Optional
 from decimal import Decimal
 from datetime import date
-from typing import Literal
 
 class StockQuote(TypedDict):
     symbol: str                              # 종목코드
