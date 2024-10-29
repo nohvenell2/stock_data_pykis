@@ -6,7 +6,7 @@ from .save_kospi_stock_index import save_kospi_stock_index
 base_dir = os.path.dirname(os.path.abspath(__file__))
 # 파일을 다운로드받고 엑셀 파일로 갱신하는 과정을 하루에 한번만 하는 로직
 LAST_RUN_FILE = os.path.join(base_dir,'get_kospi_index.log')
-# 최근 실행 날짜 확인
+print(LAST_RUN_FILE)# 최근 실행 날짜 확인
 def get_last_run_date():
     if os.path.exists(LAST_RUN_FILE):
         with open(LAST_RUN_FILE, 'r') as file:
@@ -37,7 +37,7 @@ def change_error_symbols(symbols, err_symbol = error_symbol) -> None:
         symbols[new_key]=symbols.pop(file_symbol)
 
 # S&P500 심볼 데이터 생성
-def get_kospi_index(once_per_day = False):
+def get_kospi_index():
     """
     S&P500 의 symbol, market, name_en, name_kr 정보를 가진 딕셔너리 반환
 
@@ -63,5 +63,6 @@ def get_kospi_index(once_per_day = False):
 KOSPI_INDEX = get_kospi_index()
 KOSPI_INDEX_SYMBOLS = list(KOSPI_INDEX.keys())
 set_last_run_date(today) #실행 성공 날짜 저장
+
 if __name__ == '__main__':
     print(KOSPI_INDEX)

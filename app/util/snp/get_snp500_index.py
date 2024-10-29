@@ -2,6 +2,7 @@ import os
 import pandas as pd
 from datetime import datetime
 from .save_snp500_stock_index import save_snp500_stock_index
+
 base_dir = os.path.dirname(os.path.abspath(__file__))
 # 파일을 다운로드받고 엑셀 파일로 갱신하는 과정을 하루에 한번만 하는 로직
 LAST_RUN_FILE = os.path.join(base_dir,'get_snp500_index.log')
@@ -62,5 +63,6 @@ def get_snp500_index(save : bool = False):
 SNP500_INDEX = get_snp500_index()
 SNP500_INDEX_SYMBOLS = list(SNP500_INDEX.keys())
 set_last_run_date(today) #실행 성공 날짜 저장
+
 if __name__ == '__main__':
     print(SNP500_INDEX)

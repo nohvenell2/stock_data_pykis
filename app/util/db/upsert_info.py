@@ -1,6 +1,10 @@
+import os
 from sqlalchemy import text
 from sqlalchemy.orm import sessionmaker
 from .connect_db import engine
+from dotenv import load_dotenv
+load_dotenv()
+TABLENAME_INFO = os.getenv('TABLENAME_INFO')
 
 # MySQL 연결 설정
 Session = sessionmaker(bind=engine)
@@ -10,8 +14,8 @@ def upsert_info(data):
     주식 정보 upsert
     """
     # MySQL의 INSERT INTO ... ON DUPLICATE KEY UPDATE 쿼리. 중복키 발견시 덮어씌우기
-    sql = text("""
-        INSERT INTO stock_info (
+    sql = text(f"""
+        INSERT INTO {TABLENAME_INFO} (
             symbol, stock_name, market, sector_name, price, volume, amount, market_cap, 
             sign, risk, halt, overbought, prev_price, prev_volume, `change`, high_limit, 
             low_limit, unit, tick, decimal_places, currency, exchange_rate, `open`, high, 
