@@ -12,7 +12,7 @@ base_dir = os.path.join(*save_dir)
 
 def save_snp500_stock_index(base_dir : str = base_dir) -> DataFrame:
     """
-    해외 주식 기초정보를 파일로 다운 받고 DF 로 반환 및 xlsx 파일로 저장
+    해외 주식 기초정보를 파일로 다운 받고 DF 로 반환 및 csv 파일로 저장
     Args:
         base_dir (str, optional): app/util/snp/datafiles
 
@@ -80,7 +80,7 @@ def save_snp500_stock_index(base_dir : str = base_dir) -> DataFrame:
 
     DF = pd.concat([df1,df2],axis=1) # 데이터 프레임 병합
     DF = DF[DF['S&P 500 편입종목여부'] == '1']    # 필터링 S&P 500 
-    DF.to_excel('frgn_code.xlsx',index=False)   # datafiles 에 엑셀파일로 저장
+    DF.to_csv('frgn_code.csv',index=False)   # datafiles 에 엑셀파일로 저장
     # clean temporary file and dataframe
     del (df1)
     del (df2)
