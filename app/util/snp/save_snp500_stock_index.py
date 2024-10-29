@@ -2,6 +2,9 @@ import pandas as pd
 import urllib.request
 import ssl, zipfile, os
 from pandas import DataFrame
+from dotenv import load_dotenv
+load_dotenv()
+ENCODING_CSV = os.getenv('ENCODING_CSV')
 
 curr_dir = os.path.dirname(os.path.abspath(__file__))
 save_dir = [curr_dir,'datafiles']
@@ -61,7 +64,7 @@ def save_snp500_stock_index(base_dir : str = base_dir) -> DataFrame:
     wf2.close()
     
     part1_columns = ['구분코드','심볼','영문명','한글명']
-    df1 = pd.read_csv(tmp_fil1, header=None, names=part1_columns)
+    df1 = pd.read_csv(tmp_fil1, header=None, names=part1_columns, encoding=ENCODING_CSV)
 
     # df2 : '종목업종코드','다우30 편입종목여부','나스닥100 편입종목여부', 'S&P 500 편입종목여부','거래소코드','국가구분코드'
     

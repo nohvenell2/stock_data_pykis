@@ -1,5 +1,8 @@
 """
 KRX 정보데이터시스템 사이트를 크롤링해 KOSPI 주식 시계열 일일 데이터를 csv 파일로 저장
+[Warning] 주의 !!!!!!!!!!!!!!!!!!!!!!!!
+PERIOD = 20 #20년 일때 550 mb 이상의 csv 파일 생성
+db 에 처음으로 kospi history data 를 구축할때 실행
 """
 import os
 import pandas as pd

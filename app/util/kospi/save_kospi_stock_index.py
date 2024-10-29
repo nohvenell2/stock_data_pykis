@@ -1,10 +1,10 @@
-'''코스피주식종목코드(kospi_code.mst) 정제 파이썬 파일'''
-
-import urllib.request
-import ssl
-import zipfile
-import os
 import pandas as pd
+import urllib.request
+import ssl, zipfile, os
+#from pandas import DataFrame
+from dotenv import load_dotenv
+load_dotenv()
+ENCODING_CSV = os.getenv('ENCODING_CSV')
 
 curr_dir = os.path.dirname(os.path.abspath(__file__))
 save_dir = [curr_dir,'datafiles']
@@ -51,7 +51,7 @@ def save_kospi_stock_index(base_dir : str = base_dir):
     wf2.close()
 
     part1_columns = ['단축코드', '표준코드', '한글명']
-    df1 = pd.read_csv(tmp_fil1, header=None, names=part1_columns)
+    df1 = pd.read_csv(tmp_fil1, header=None, names=part1_columns,  encoding=ENCODING_CSV)
 
     field_specs = [2, 1, 4, 4, 4,
                     1, 1, 1, 1, 1,

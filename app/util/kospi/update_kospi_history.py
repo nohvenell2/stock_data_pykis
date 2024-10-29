@@ -1,5 +1,6 @@
 """
 KOSPI 주식 시계열 일일 csv 데이터를 불러와 데이터베이스에 저장
+주식 시계열 데이터 업데이트
 """
 import pandas as pd
 import os
