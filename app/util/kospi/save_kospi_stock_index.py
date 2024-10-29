@@ -12,7 +12,7 @@ base_dir = os.path.join(*save_dir)
 
 def save_kospi_stock_index(base_dir : str = base_dir):
     """
-    KOSPI 주식 기초정보를 파일로 다운 받고 DF 로 반환 및 xlsx 파일로 저장
+    KOSPI 주식 기초정보를 파일로 다운 받고 DF 로 반환 및 csv 파일로 저장
     Args:
         base_dir (str, optional): Defaults app/util/kospi/datafiles
 
@@ -89,7 +89,7 @@ def save_kospi_stock_index(base_dir : str = base_dir):
 
     DF = pd.merge(df1, df2, how='outer', left_index=True, right_index=True) # 데이터 프레임 병합
     DF = DF[(DF['그룹코드'] == 'ST') & (DF['KOSPI'] == 'Y')]    # 필터링. kospi + 주식
-    DF.to_excel('kospi_code.xlsx', index=False)
+    DF.to_csv('kospi_code.csv', index=False)
     # clean temporary file and dataframe
     del (df1)
     del (df2)

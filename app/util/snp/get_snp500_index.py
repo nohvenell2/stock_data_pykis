@@ -43,11 +43,12 @@ def get_snp500_index(save : bool = False):
     Returns: `{ symbol : { market, name_en, name_kr }}` 
     """
     #엑셀 파일을 매일 한번만 갱신
-    if not once_per_day : save_snp500_stock_index()
+    if save : save_snp500_stock_index()
     file_dir = 'datafiles'
-    file_name = 'frgn_code.xlsx'
+    file_name = 'frgn_code.csv'
     file_path = os.path.join(base_dir,file_dir,file_name)
-    df = pd.read_excel(file_path,'Sheet1')
+    df = pd.read_csv(file_path)
+    
     market_code = {'NASD' : 'NASDAQ', 'NYSE' : 'NYSE', 'AMEX' : 'AMEX'}
     snp500_index = {
         row['심볼'].strip(): {
@@ -60,9 +61,9 @@ def get_snp500_index(save : bool = False):
     change_error_symbols(snp500_index)
     return snp500_index
 
-SNP500_INDEX = get_snp500_index()
+SNP500_INDEX = get_snp500_index(not once_per_day)
 SNP500_INDEX_SYMBOLS = list(SNP500_INDEX.keys())
 set_last_run_date(today) #실행 성공 날짜 저장
 
 if __name__ == '__main__':
-    print(SNP500_INDEX)
+    a = None
