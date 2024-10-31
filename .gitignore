@@ -14,3 +14,4 @@ __pycache__
 _error*
 *.csv
 secret.json
+token.json
