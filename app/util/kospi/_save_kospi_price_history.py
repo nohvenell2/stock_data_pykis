@@ -1,7 +1,9 @@
 """
+[ Warning ] 주의 !!!!!!!!!!!!!!!!!!!!!!!!
+프로그램 정상 실행시 높은 확률로 KRX 정보데이터시스템 사이트에서 ip 영구 차단당함
+PERIOD = 20 # 20년치 자료 다운로드 시 550 mb 이상의 csv 파일 생성
+
 KRX 정보데이터시스템 사이트를 크롤링해 KOSPI 주식 시계열 일일 데이터를 csv 파일로 저장
-[Warning] 주의 !!!!!!!!!!!!!!!!!!!!!!!!
-PERIOD = 20 #20년 일때 550 mb 이상의 csv 파일 생성
 db 에 처음으로 kospi history data 를 구축할때 실행
 """
 import os
@@ -10,7 +12,7 @@ from pandas import DataFrame
 from tqdm import tqdm
 import cloudscraper
 from get_kospi_index import KOSPI_INDEX, KOSPI_INDEX_SYMBOLS
-from app.util.kospi.get_1y_period import generate_1y_periods
+from app.util.kospi._get_1y_period import generate_1y_periods
 
 base_dir = os.path.dirname(os.path.abspath(__file__))
 save_dir = 'datafiles'

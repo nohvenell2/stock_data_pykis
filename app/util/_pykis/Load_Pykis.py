@@ -10,9 +10,6 @@ APP_SEC_REAL=os.getenv('APP_SEC_REAL')
 #APP_KEY_TEMP=os.getenv('APP_KEY_TEMP')
 #APP_SEC_TEMP=os.getenv('APP_SEC_TEMP')
 KIS = PyKis(
-    id=SITE_ID,
-    account=ACC_NO_REAL,
-    appkey=APP_KEY_REAL,
-    secretkey=APP_SEC_REAL,
+    "secret.json", 
     keep_token=True
 )
