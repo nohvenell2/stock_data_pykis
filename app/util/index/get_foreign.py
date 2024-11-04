@@ -3,6 +3,7 @@ S&P500, NASDAQ 종합지수, 다우존스 종합지수 히스토리 데이터를
 S&P500, 다우존스는 한국시간 오전 9시, NADSAQ 은 오후 9시에 최신값 업데이트 됨
 """
 import pandas as pd
+from pandas import DataFrame
 import requests
 from datetime import datetime, timedelta
 import time, os
@@ -33,7 +34,7 @@ class FredIndex:
             
         self.last_request_time = time.time()
     
-    def get_index_data(self, series_id, start_date, end_date):
+    def get_index_data(self, series_id, start_date, end_date) -> DataFrame | None:
         """단일 지수의 데이터를 가져옵니다."""
         
         params = {
@@ -58,8 +59,8 @@ class FredIndex:
         except requests.exceptions.RequestException as e:
             print(f"API 요청 중 오류 발생 ({series_id}): {e}")
             return None
-        
         # 데이터 정제
+        if df.empty: return None
         df['date'] = pd.to_datetime(df['date'])
         df['value'] = pd.to_numeric(df['value'], errors='coerce')
         df = df.dropna()

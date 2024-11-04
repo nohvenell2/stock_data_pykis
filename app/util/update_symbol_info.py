@@ -9,7 +9,7 @@ Session = sessionmaker(bind=engine)
 session = Session()
 def update_symbol_info(symbol: str):
     """
-    주식 symbol -> KisQuote -> Dict -> mysql stock_info 테이블 에 저장
+    주식 symbol -> KisQuote -> Dict -> mysql db 테이블 에 저장
     """
     data = convert_symbol_to_infodict(symbol)
     upsert_info(data)

@@ -18,4 +18,4 @@ def main(dprint : bool = False,tqdm_disable : bool = True, past = PAST):
     if dprint: print(f'Excution Time : {execution_time}')
 
 if __name__ == '__main__':
-    main(dprint=True, tqdm_disable=False)
+    main(dprint=True, tqdm_disable=True)
