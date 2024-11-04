@@ -13,3 +13,5 @@ __pycache__
 *.log
 _error*
 *.csv
+secret.json
+token.json
