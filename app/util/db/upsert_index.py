@@ -2,7 +2,6 @@ import os
 from sqlalchemy import text
 from sqlalchemy.orm import sessionmaker
 from .connect_db import engine
-from typing import Literal
 
 from dotenv import load_dotenv
 load_dotenv()

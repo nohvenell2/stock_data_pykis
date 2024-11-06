@@ -13,3 +13,4 @@ KIS = PyKis(
     secretkey=APP_SEC_REAL,
     keep_token=True
 )
+TOKEN = KIS.token.token

@@ -1,8 +1,8 @@
 import os
 import json
 from .Load_Pykis import KIS
-k = KIS # 토큰 기한 만료시 발급
-def get_tokenString():
+""" def get_tokenString():
+    k = KIS.token # 토큰 기한 만료시 발급
     folder_path = '/home/ubuntu/.pykis/cache/'
     file_list = os.listdir(folder_path)
     if not file_list: return None
@@ -13,5 +13,5 @@ def get_tokenString():
             data = json.load(file)  # JSON 파일을 파이썬 딕셔너리로 변환
             return data['access_token']
     else:
-        print(f"{file_name} 파일이 폴더에 없습니다.")
-token = get_tokenString()
+        print(f"{file_name} 파일이 폴더에 없습니다.") """
+token = KIS.token.token

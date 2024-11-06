@@ -1,14 +1,14 @@
 import os, requests
 import pandas as pd
 from dotenv import load_dotenv
-from .._pykis.token_string import token
+from .._pykis.Load_Pykis import TOKEN
 from datetime import datetime, timedelta
 load_dotenv()
 #env
 APP_KEY = os.getenv('APP_KEY_REAL')
 APP_SEC = os.getenv('APP_SEC_REAL')
 ACC_NO = os.getenv('ACC_NO_REAL')
-TOKEN = f'Bearer {token}'
+token = f'Bearer {TOKEN}'
 API_URL_REAL = 'https://openapi.koreainvestment.com:9443' # 실전투자 api url
 def get_kospi(period : int = 5, end_date : str | None = None):
     """
@@ -27,7 +27,7 @@ def get_kospi(period : int = 5, end_date : str | None = None):
     url = f"{API_URL_REAL}/{path}"
     headers = {
         "content-type": "application/json",
-        "authorization": TOKEN,
+        "authorization": token,
         "appKey": APP_KEY,
         "appSecret": APP_SEC,
         "tr_id": "FHKUP03500100"
